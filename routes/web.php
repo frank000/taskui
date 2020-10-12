@@ -25,6 +25,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('home');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/adm/tarefas', function () {
-    return view('adm.tarefas');
-})->name('tarefas');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades', function () {
+//    return view('adm.atividades');
+//})->name('atividades');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades',
+[\App\Http\Controllers\Adm\Atividades::class,'index']
+)->name('atividades.index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/create',
+[\App\Http\Controllers\Adm\Atividades::class,'create']
+)->name('atividades.create');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/show/{atividade}',
+[\App\Http\Controllers\Adm\Atividades::class,'show']
+)->name('atividades.show');

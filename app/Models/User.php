@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'num_telefone'
     ];
 
     /**
@@ -57,4 +57,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function atividades()
+    {
+        return $this->hasMany(Atividade::class);
+    }
+    public function marcacaoAtividades()
+    {
+        return $this->hasMany(MarcacaoAtividade::class);
+    }
 }
