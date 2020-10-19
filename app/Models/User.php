@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(MarcacaoAtividade::class);
     }
+
+    public function checkPermission()
+    {
+        return true;
+    }
 }

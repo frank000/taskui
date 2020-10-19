@@ -45,15 +45,16 @@ class AgendaService
             {
                 array_push($arrDias,$dia->num_dia);
             }
-
-            for ($i = 1; $i < $qtdDias; $i++)
+            for ($i = 1; $i <= $qtdDias; $i++)
             {
                 if(in_array(Carbon::create($dataGera)->dayOfWeek,$arrDias))
                 {
+//                    if(Carbon::create($dataGera)->dayOfWeek == 1)
+//                        dd($dataGera, Carbon::create($dataGera)->dayOfWeek);
                     //gera  os horários
                     $this->geraHorariosByDia($dataGera, $numPeriodo, $atividade->id);
-                    $dataGera = Carbon::create($dataGera)->addDays(1);
                 }
+                $dataGera = Carbon::create($dataGera)->addDays(1)->toDateTimeString();
             }
         }catch (\Exception $e){
             return "Houve um problema ao gerar a agenda:  " . $e->getMessage();
@@ -68,8 +69,8 @@ class AgendaService
                 ->where('flg_situacao', Constant::FLG_ATIVO)->get();
 
             $format = 'Y-m-d H:i:s';
-            $dateHorInicio = \DateTime::createFromFormat($format, $date . ' ' . $per[0]['hor_inicio']);
-            $dateHorFim = \DateTime::createFromFormat($format, $date . ' ' .  $per[0]['hor_fim']);
+            $dateHorInicio = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' . $per[0]['hor_inicio']);
+            $dateHorFim = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' .  $per[0]['hor_fim']);
 
             $carbonIni = Carbon::parse($dateHorInicio);
             $carbonFim = Carbon::parse($dateHorFim);
@@ -91,6 +92,26 @@ class AgendaService
             return "Houve um problema ao gerar o horário para a agenda:  " . $e->getMessage();
         }
 
+    }
+
+    /**
+     * Cancela um agendamento, retornado para o usuário email ou sms informando teve seu agendamento cancelado
+     */
+    public function cancelAgenda()
+    {
+        $this->agendaModel->flg_aberto = Constant::FLG_AGENDA_CANCELADA;
+        return $this->agendaModel->save();
+    }
+
+
+    /**
+     * Fecha um agendamento ainda nao registrado
+     * return boolean
+     */
+    public function closeAgenda()
+    {
+        $this->agendaModel->flg_aberto = Constant::FLG_AGENDA_FECHADA;
+        return $this->agendaModel->save();
     }
 
 

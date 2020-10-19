@@ -26,5 +26,17 @@ function massage(data){
       $('#messageFlash').slideDown(300).append(success).delay( 3000 ).slideUp(300);
     });
 
+
 }
 
+function carregando(exibirCarregando) {
+    if (exibirCarregando == false) {
+        $(".loading-dialog").fadeOut();
+    } else {
+        // Reseta o progress
+        $(".loading-dialog .loading-progress").removeAttr('value').removeAttr('max');
+        $('.loading-dialog .loading-progress').hide();
+
+        $(".loading-dialog").fadeIn();
+    }
+};
