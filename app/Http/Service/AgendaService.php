@@ -35,6 +35,8 @@ class AgendaService
             $qtdDias = Carbon::parse($atividade->dat_inicio)->diffInDays($atividade->dat_fim);
             $dataGera = $atividade->dat_inicio;
 
+            //get resources from given activity
+            //to any resource I create the Agenda
 
             $diasSemana = SemanaPeriodo::where('flg_situacao', Constant::FLG_ATIVO)
                 ->where('atividade_id' , $atividade->id)

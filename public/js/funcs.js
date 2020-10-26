@@ -19,11 +19,24 @@ function mascaraTel(el){
 function massage(data){
     $(document).ready(function(){
         $('#messageFlash').empty()
-        var success = "<div class=\"col-start-2 col-span-4 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 w-3/4\" role=\"alert\">\n" +
+        var success = "<div class=\"col-start-2 col-span-4 bg-blue-100 border-t border-b focus:border-blue-500 text-blue-700 px-4 py-3 w-3/4\" role=\"alert\">\n" +
             "                    <p class=\"font-bold\">" + data.title + "</p>\n" +
             "                    <p class=\"text-sm\">" + data.msg + "</p>\n" +
             "                </div>";
       $('#messageFlash').slideDown(300).append(success).delay( 3000 ).slideUp(300);
+    });
+
+
+}
+function massageAlert(data){
+    $(document).ready(function(){
+        $('#helperMessage').empty()
+        var success = "<div class=\"text-center bg-red-100 border-t border-b border-red-500 text-blue-700 px-4 py-3 w-full\" role=\"alert\">\n" +
+            "                    <p class=\"font-bold\">" + data.title + "</p>\n" +
+            "                    <p class=\"text-sm\">" + data.msg + "</p>\n" +
+            "                </div>";
+        $('#helperMessage').slideDown(300).append(success).delay( 3000 ).slideUp(300);
+        $("html, body").animate({ scrollTop: 0 });
     });
 
 
@@ -40,3 +53,27 @@ function carregando(exibirCarregando) {
         $(".loading-dialog").fadeIn();
     }
 };
+
+
+function grid(table,showName)
+{
+    return $(table).DataTable( {
+        responsive: true,
+        "language": {
+            "lengthMenu": "Apresenta _MENU_ "+ showName +" por pagina",
+            "zeroRecords": "Não há "+ showName +".",
+            "info": "Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "Sem registros",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search":         "Busca:",
+            "paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+            },
+        }
+    } )
+        .columns.adjust()
+        .responsive.recalc();
+}

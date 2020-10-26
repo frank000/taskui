@@ -22,6 +22,15 @@
         <!-- Scripts -->
         <script src="{{ asset('js/funcs.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
+        <script>
+            $(document).ready(function(){
+                Livewire.on('infoEvent', function (e){
+                    massage( {title: e.title, msg: e.msg });
+                 //   window.location.href = e.url;
+                });
+            })
+
+        </script>
         <style>
             /***** LOADING *****/
             .loading-dialog {
@@ -89,7 +98,7 @@
             </div>
         </div>
     </div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
             @livewire('navigation-dropdown')
 
 
@@ -100,8 +109,10 @@
                     {{ $header }}
                 </div>
             </header>
-            <div id="messageFlash" class="grid grid-cols-5 gap-2">
-                </div>
+
+                @livewire('componente.message')
+            <div id="helperMessage"></div>
+
 
             <!-- Page Content -->
             <main>

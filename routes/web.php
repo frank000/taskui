@@ -17,13 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+    return view('home');
+})->name('home');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-    return view('home');
-})->name('home');
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades', function () {
 //    return view('adm.atividades');
@@ -38,4 +39,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/create',
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/show/{atividade}',
 [\App\Http\Controllers\Adm\Atividades::class,'show']
-)->name('atividades.show');
+
+)->name('resources.show');Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources',
+[\App\Http\Controllers\Adm\Resources::class,'index']
+);
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources/create',
+    [\App\Http\Controllers\Adm\Resources::class,'create']
+)->name('resources.create');
