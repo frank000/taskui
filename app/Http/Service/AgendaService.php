@@ -26,7 +26,7 @@ class AgendaService
         dd($result);
     }
 
-    public function gerarAgenda($atividade)
+    public function gerarAgenda($atividade, $resourceId)
     {
         try{
             $numPeriodo = $atividade->temp_periodo;
@@ -39,8 +39,9 @@ class AgendaService
             //to any resource I create the Agenda
 
             $diasSemana = SemanaPeriodo::where('flg_situacao', Constant::FLG_ATIVO)
-                ->where('atividade_id' , $atividade->id)
+                ->where(['atividade_id' =>$atividade->id , 'resource_id'=>$resourceId])
                 ->get();
+
             $arrDias = [];
 
             foreach ($diasSemana as $dia)
@@ -54,7 +55,7 @@ class AgendaService
 //                    if(Carbon::create($dataGera)->dayOfWeek == 1)
 //                        dd($dataGera, Carbon::create($dataGera)->dayOfWeek);
                     //gera  os horários
-                    $this->geraHorariosByDia($dataGera, $numPeriodo, $atividade->id);
+                    $this->geraHorariosByDia($dataGera, $numPeriodo, $atividade->id,$resourceId);
                 }
                 $dataGera = Carbon::create($dataGera)->addDays(1)->toDateTimeString();
             }
@@ -63,7 +64,7 @@ class AgendaService
         }
 
     }
-    protected function geraHorariosByDia($date, $periodo, $idAtividade)
+    protected function geraHorariosByDia($date, $periodo, $idAtividade, $resourceId)
     {
         try{
             $per =  SemanaPeriodo::where('num_dia', Carbon::create($date)->dayOfWeek)
@@ -71,25 +72,45 @@ class AgendaService
                 ->where('flg_situacao', Constant::FLG_ATIVO)->get();
 
             $format = 'Y-m-d H:i:s';
-            $dateHorInicio = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' . $per[0]['hor_inicio']);
-            $dateHorFim = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' .  $per[0]['hor_fim']);
+            $dateHorInicioMan = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' . $per[0]['hor_inicio_man']);
+            $dateHorFimMan = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' .  $per[0]['hor_fim_man']);
+            $dateHorInicioTar = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' . $per[0]['hor_inicio_tar']);
+            $dateHorFimTar = \DateTime::createFromFormat($format, explode(" ",$date)[0] . ' ' .  $per[0]['hor_fim_tar']);
 
-            $carbonIni = Carbon::parse($dateHorInicio);
-            $carbonFim = Carbon::parse($dateHorFim);
+            //cria os horários para MANHÃ
+            $carbonIni = Carbon::parse($dateHorInicioMan);
+            $carbonFim = Carbon::parse($dateHorFimMan);
+            $minDia = $carbonIni->diffInMinutes($carbonFim);//quantidade de minutos para o dia MANHA
 
-            $minDia = $carbonIni->diffInMinutes($carbonFim);//quantidade de minutos para o dia
             $qtdAtendimento =  $minDia / $periodo;
 
             for ($i = 0 ; $i < $qtdAtendimento; $i++)
             {
                 $arrHorarios = [];
                 $arrHorarios['atividade_id'] = $idAtividade;
+                $arrHorarios['resource_id'] = $resourceId;
                 $arrHorarios['dat_marcacao'] = $carbonIni->toDateTimeString();
                 $arrHorarios['flg_situacao'] = Constant::FLG_ATIVO;
                 $arrHorarios['flg_aberto'] = Constant::FLG_AGENDA_ABERTA;
                 $carbonIni->addMinutes($periodo);
                 Agenda::create($arrHorarios);
             }
+            //cria os horários para TARDE
+            $carbonIniTar = Carbon::parse($dateHorInicioTar);
+            $carbonFimTar = Carbon::parse($dateHorFimTar);
+            $minDiaTar = $carbonIniTar->diffInMinutes($carbonFimTar);//quantidade de minutos para o dia Tarde
+            for ($i = 0 ; $i < $qtdAtendimento; $i++)
+            {
+                $arrHorarios = [];
+                $arrHorarios['atividade_id'] = $idAtividade;
+                $arrHorarios['resource_id'] = $resourceId;
+                $arrHorarios['dat_marcacao'] = $carbonIniTar->toDateTimeString();
+                $arrHorarios['flg_situacao'] = Constant::FLG_ATIVO;
+                $arrHorarios['flg_aberto'] = Constant::FLG_AGENDA_ABERTA;
+                $carbonIniTar->addMinutes($periodo);
+                Agenda::create($arrHorarios);
+            }
+
         }catch (\Exception $e){
             return "Houve um problema ao gerar o horário para a agenda:  " . $e->getMessage();
         }

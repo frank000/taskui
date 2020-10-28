@@ -13,7 +13,7 @@
             <x-slot name="title">Aviso</x-slot>
             <x-slot name="content">{{$msg}}</x-slot>
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('isSaved')" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="$toggle('isSaved')" wire:click="redirectPage" wire:loading.attr="disabled">
                     OK
                 </x-jet-secondary-button>
             </x-slot>
@@ -24,13 +24,13 @@
             </div>
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="str_atividade" value="{{ __('Nome') }}" />
-                <x-jet-input id="str_atividade" type="text" class="mt-1 block w-full" wire:model.defer="atividade.str_atividade" />
+                <x-jet-input id="str_atividade" type="text" class="mt-1 block w-full" wire:model="atividade.str_atividade" />
                 <x-jet-input-error for="str_atividade" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="str_desc" value="{{ __('Descrição') }}" />
-                <x-jet-input id="str_desc" type="textarea" class="mt-1 block w-full" wire:model.defer="atividade.str_desc"  />
+                <x-jet-input id="str_desc" type="textarea" class="mt-1 block w-full" wire:model="atividade.str_desc"  />
                 <x-jet-input-error for="str_desc" class="mt-2" />
             </div>
 
@@ -38,13 +38,13 @@
 
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="temp_periodo" value="{{ __('Tempo em minutos da atividade') }}" />
-                <div class="inline-flex"><x-jet-input id="temp_periodo" type="number" class="mt-1 block w-20" wire:model.defer="atividade.temp_periodo"  /> <div class="ml-1 pt-4">Min.</div></div>
+                <div class="inline-flex"><x-jet-input id="temp_periodo" type="number" class="mt-1 block w-20" wire:model="atividade.temp_periodo"  /> <div class="ml-1 pt-4">Min.</div></div>
                 <x-jet-input-error for="temp_periodo" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="str_img" value="{{ __('Imagem') }}" />
-                <x-jet-input id="str_img" type="file" class="mt-1 block w-full" wire:model.defer="atividade.str_img"  />
+                <x-jet-input id="str_img" type="file" class="mt-1 block w-full" wire:model="atividade.str_img"  />
                 <x-jet-input-error for="str_img" class="mt-2" />
             </div>
 
@@ -53,11 +53,11 @@
                     <div class="inline-flex">
 
                         <x-jet-label for="dat_inicio" value="{{ __('Início da atividade') }}" />
-                        <x-jet-input id="dat_inicio" type="date" class="mt-1 block w-40" wire:model.defer="atividade.dat_inicio"  />
+                        <x-jet-input id="dat_inicio" type="date" class="mt-1 block w-50" wire:model="atividade.dat_inicio"  />
                         <x-jet-input-error for="dat_inicio" class="mt-2" />
 
                         <x-jet-label for="dat_fim" value="{{ __('Fim da atividade') }}"  class="ml-4"/>
-                        <x-jet-input id="dat_fim" type="date" class="mt-1 block w-40" wire:model.defer="atividade.dat_fim"  />
+                        <x-jet-input id="dat_fim" type="date" class="mt-1 block w-50" wire:model="atividade.dat_fim"  />
                         <x-jet-input-error for="dat_fim" class="mt-2" />
                     </div>
 
@@ -98,11 +98,11 @@
 
                             <div class=" sm:col-span-4 inline-flex gap-6" >
                                 <div class="focus:bg-gray-100"><x-jet-label for="check1" value="{{ __('Todos os dias (7 dias)') }}" />
-                                    <input id="all" type="checkbox" class="mt-1 block" wire:model="dias.all" @if($custonOpen) disabled @endif/>
+                                    <input id="all" type="checkbox" class="mt-1 block" wire:model="dias.all" @if(isset($dias['uteis']) && $dias['uteis']) disabled @endif/>
                                     <x-jet-input-error for="all" class="mt-2" /></div>
 
                                 <div> <x-jet-label for="check2" value="{{ __('Dias uteis(5 dias)') }}" />
-                                    <input id="uteis" type="checkbox" class="mt-1 block" wire:model="dias.uteis" @if($custonOpen) disabled @endif/>
+                                    <input id="uteis" type="checkbox" class="mt-1 block" wire:model="dias.uteis" @if(isset($dias['all']) && $dias['all']) disabled @endif/>
                                     <x-jet-input-error for="uteis" class="mt-2" />
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
             </div>
             <div class="col-span-6 sm:col-span-4 space-y-4">
 {{--                <livewire:componente.inner-resource :resources="$resourcesArr"/>--}}
-                @livewire('componente.inner-resource', ['resources' => $resourcesArr]);
+                @livewire('componente.inner-resource', ['resources' => $resourcesArr])
             </div>
 
 
@@ -162,7 +162,7 @@
                 <div class="col-span-6 sm:col-span-4">
                     <img src="{{asset('/img/task3.png')}}" width="110%"/>
                 </div>
-                @livewire('componente.detail-activity')
+                @livewire('componente.detail-activity',['atividade' => $atividade, 'resources' => $resourcesArr])
             </div>
 
     @endif
@@ -187,7 +187,7 @@
             </a>
         @endif
         @if($pageScreen == 3)
-            <x-jet-button>
+            <x-jet-button onclick="carregando(true)">
                 {{ __('Concluir') }}
             </x-jet-button>
         @endif
@@ -200,6 +200,12 @@
             //alert('Favor relacionar ao menos um recurso para a execução da atividade.')
              massageAlert({title:'Alerta',msg:'Favor relacionar ao menos um recurso para a execução da atividade.'})
         });
+
+        Livewire.on('hideLoadingEvent', function (){
+            carregando(false);
+        });
+
+
     });
 
 

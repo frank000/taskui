@@ -27,7 +27,7 @@ class Create extends Component
     public $dias=[];
 
     //variables next page
-    public $pageScreen = 2;
+    public $pageScreen = 1;
     public $isFirstPage = true;
     public $isSecondPage = false;
     public $resourceObj;
@@ -59,21 +59,29 @@ class Create extends Component
 
         if($atividade = Atividade::create($this->atividade))
         {
-           if($this->organizaDias($atividade->id))
-           {
-                $agenda = new AgendaService(new Agenda());
-                try{
-                    $agenda->gerarAgenda($atividade);
-                    $this->isSaved = true;
-                    $this->msg = "Registro salvo com sucesso.";
-                    $this->atividade = [];
-                }catch (\Exception $e){
-                    $this->isSaved = false;
-                    $this->msg = "Houve um problema ao criar a atividade.";
-                    $this->atividade = [];
-                }
 
-           }
+//           if($this->organizaDias($atividade->id))
+//           {
+                $agenda = new AgendaService(new Agenda());
+            try{
+
+                foreach ($this->resourcesArr as $resource)
+                {
+                    $this->organizaDias($atividade->id, $resource['id']);
+                    $agenda->gerarAgenda($atividade,$resource['id']);
+                }
+                $this->emit('hideLoadingEvent');
+                $this->isSaved = true;
+                $this->msg = "Registro salvo com sucesso.";
+                $this->atividade = [];
+            }catch (\Exception $e){
+                $this->isSaved = true;
+                $this->msg = "Houve um problema ao criar a atividade.";
+                $this->msg .= $e->getMessage();
+                $this->atividade = [];
+            }
+
+//           }
         }
     }
 
@@ -88,51 +96,47 @@ class Create extends Component
             unset($this->dias[key($value)]);
     }
 
-    public function organizaDias($id)
+    public function organizaDias($id, $resourceId)
     {
-        //salva 7 dias semana
-        if(isset($this->dias['all']))
-        {
-            Validator::make($this->dias, [
-                'hor_inicio_man' => ['required',  'max:255'],
-                'hor_fim_man' => ['required',  'max:255'],
-                'hor_inicio_man' => ['required',  'max:255'],
-                'hor_fim_man' => ['required',  'max:255'],
-            ])->validate();
 
+        $days=[];
+        foreach ($this->resourcesArr as $rec)
+        {
+            $days = $rec['days'];
+        }
+
+        //salva 7 dias semana
+        if(isset($days['all']))
+        {
             for ($dia = 0 ; $dia < 7; $dia++ )
             {
                 $arrDia = [];
                 $arrDia['atividade_id'] = $id;
-                $arrDia['resource_id'] = $dia;
+                $arrDia['resource_id'] = $resourceId;
                 $arrDia['num_dia'] = $dia;
-                $arrDia['hor_inicio_man'] = $this->dias['hor_inicio_man'];
-                $arrDia['hor_fim_man'] = $this->dias['hor_fim_man'];
-                $arrDia['hor_inicio_tar'] = $this->dias['hor_inicio_tar'];
-                $arrDia['hor_fim_man_tar'] = $this->dias['hor_fim_tar'];
+                $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
+                $arrDia['hor_fim_man'] = $days['hor_fim_man'];
+                $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
+                $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
                 $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
                 SemanaPeriodo::create($arrDia);
             }
             return true;
         }
-        elseif (isset($this->dias['uteis']))
+        elseif (isset($days['uteis']))
         {
-            Validator::make($this->dias, [
-                'hor_inicio_man' => ['required',  'max:255'],
-                'hor_fim_man' => ['required',  'max:255'],
-                'hor_inicio_man' => ['required',  'max:255'],
-                'hor_fim_man' => ['required',  'max:255'],
-            ])->validate();
             for ($dia = 1 ; $dia < 6; $dia++ )
             {
                 $arrDia = [];
                 $arrDia['atividade_id'] = $id;
+                $arrDia['resource_id'] = $resourceId;
                 $arrDia['num_dia'] = $dia;
-                $arrDia['hor_inicio_man'] = $this->dias['hor_inicio_man'];
-                $arrDia['hor_fim_man'] = $this->dias['hor_fim_man'];
-                $arrDia['hor_inicio_tar'] = $this->dias['hor_inicio_tar'];
-                $arrDia['hor_fim_man_tar'] = $this->dias['hor_fim_tar'];
+                $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
+                $arrDia['hor_fim_man'] = $days['hor_fim_man'];
+                $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
+                $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
                 $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
+;
                 SemanaPeriodo::create($arrDia);
             }
             return true;
@@ -140,22 +144,16 @@ class Create extends Component
         else
         {
             $arrDias = [];
-            foreach ($this->dias as $dia)
+            foreach ($days as $dia)
             {
-                Validator::make($dia, [
-                    'hor_inicio_man_p' => 'required',
-                    'hor_fim_man_p' => 'required',
-                    'hor_inicio_tar_p' => 'required',
-                    'hor_fim_tar_p' => 'required',
-                ])->validate();
-
                 $arrDia = [];
                 $arrDia['atividade_id'] = $id;
+                $arrDia['resource_id'] = $resourceId;
                 $arrDia['num_dia'] = Constant::DIAS[key($dia)];
-                $arrDia['hor_inicio_man'] = $this->dias['hor_inicio_man_p'];
-                $arrDia['hor_fim_man'] = $this->dias['hor_fim_man_p'];
-                $arrDia['hor_inicio_tar'] = $this->dias['hor_inicio_tar_p'];
-                $arrDia['hor_fim_man_tar'] = $this->dias['hor_fim_tar_p'];
+                $arrDia['hor_inicio_man'] = $dia['hor_inicio_man_p'];
+                $arrDia['hor_fim_man'] = $dia['hor_fim_man_p'];
+                $arrDia['hor_inicio_tar'] = $dia['hor_inicio_tar_p'];
+                $arrDia['hor_fim_tar'] = $dia['hor_fim_tar_p'];
                 $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
                 array_push($arrDias,$arrDia);
             }
@@ -165,10 +163,6 @@ class Create extends Component
             }
             return true;
         }
-
-
-
-
     }
 
     /**
@@ -191,8 +185,12 @@ class Create extends Component
             return 2;
     }
 
+    /**
+     * Responsible to change page to the next
+     * @param $page
+     */
     public function changePage($page)
-    {//&& is_array($this->validatePage())
+    {
         if($page == 1 )
         {
             $this->pageScreen = 2;
@@ -211,6 +209,10 @@ class Create extends Component
 
     }
 
+    /**
+     * It's responsible to return a page in the screen
+     * @param $page
+     */
     public function backPage($page)
     {
         $this->pageScreen = $page-1;
@@ -253,6 +255,12 @@ class Create extends Component
         $this->emitTo("CheckHour","clearDiasEvent");
     }
 
+    /**
+     * Create the string to de days field in the grid
+     * @param $arrDays
+     * @return string
+     *
+     */
     protected function handleDays($arrDays)
     {
         $resultString = "";
@@ -276,6 +284,10 @@ class Create extends Component
         return $resultString;
     }
 
+    /**
+     * Valida os campos de horários customizados
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function validateCustom()
     {
         if(count($this->dias)>0)
@@ -298,6 +310,11 @@ class Create extends Component
 
     }
 
+    /**
+     * Valida o campo de horários padrões
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function validateDefault()
     {
         if((!empty($this->dias) && count($this->dias) > 0) &&
@@ -319,14 +336,33 @@ class Create extends Component
             ])->validate();
         }
     }
+
+    /**
+     * Deleta um recurso do array que é mostrado pelo componente inner resource
+     * @param $val
+     */
     public function deleteResource($val)
     {
-        unset($this->resourcesArr[$val['resource']]);
+        if(isset($this->resourcesArr[$val['resource']]))
+        {
+            unset($this->resourcesArr[$val['resource']]);
+        }
         $this->emit('addedResourceEvent',$this->resourcesArr);
     }
 
     public function updatedResourceObj()
     {
+        $this->dias = [];
         $this->emitTo("CheckHour","clearDiasEvent");
+    }
+
+    /**
+     * Screen action, responsible to hide modal, and redirect page to back
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectPage()
+    {
+        $this->isSaved = !$this->isSaved;
+        return redirect()->to('/adm/atividades');
     }
 }
