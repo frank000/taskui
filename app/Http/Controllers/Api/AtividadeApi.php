@@ -15,7 +15,7 @@ class AtividadeApi extends Controller
     {
         try {
             $agService = new AgendaService(new \App\Models\Agenda());
-            $base64Code = $agService->getQrCode(url('/adm/atividades/generate-qr-code/' . $idAtividade));
+            $base64Code = $agService->getQrCode(url('/guest/list-tasks-id/' . $idAtividade));
             $logo = HelperService::imagenToBase64('img/logo.png');
 
             $company = "Clinica teste";
