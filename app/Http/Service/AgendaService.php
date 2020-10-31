@@ -7,6 +7,9 @@ use App\Models\Constant;
 use App\Models\MarcacaoAtividade;
 use App\Models\SemanaPeriodo;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use QrCode;
+use PDF;
 
 
 class AgendaService
@@ -20,10 +23,32 @@ class AgendaService
 
     public function getAgendaByIdAtividade($idAtividade)
     {
-        $result = MarcacaoAtividade::where('atividade_id',$idAtividade)
-            ->orderBy('dat_marcacao','desc')
+        $token = TokenService::tokenizer($idAtividade);
+        $resultDateHour = [];
+        //available dates per activite
+        $dates = DB::table('agendas')
+            ->select(DB::raw('DATE(dat_marcacao) as agenda_dat'))
+            ->where(['atividade_id' => $token->id, 'flg_situacao' => Constant::FLG_ATIVO,
+                'flg_aberto' => Constant::FLG_AGENDA_ABERTA])
+            ->where('client_id', null)
+            ->groupBy('agenda_dat')
             ->get();
-        dd($result);
+        //available times to given DATE
+        foreach ($dates as $date) {
+            $hours = DB::table('agendas')
+                ->select(DB::raw('* ,TIME(dat_marcacao) as agenda_tim'), DB::raw('DATE(dat_marcacao) as agenda_dat'))
+                ->havingRaw('atividade_id = ? AND flg_situacao = ? AND flg_aberto = ? AND agenda_dat= ? AND client_id IS NULL',
+                    [$token->id, Constant::FLG_ATIVO, Constant::FLG_AGENDA_ABERTA, $date->agenda_dat])
+                ->get();
+
+            //assembling array to screen on view
+            $finalResult = array_map(function ($item){
+                return (array)$item;
+            },$hours->toArray());
+
+            $resultDateHour[$date->agenda_dat] =  HelperService::group_by('agenda_tim',$finalResult);
+        }
+        return $resultDateHour;
     }
 
     public function gerarAgenda($atividade, $resourceId)
@@ -135,6 +160,11 @@ class AgendaService
     {
         $this->agendaModel->flg_aberto = Constant::FLG_AGENDA_FECHADA;
         return $this->agendaModel->save();
+    }
+
+    public function getQrCode($link)
+    {
+        return base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($link));
     }
 
 

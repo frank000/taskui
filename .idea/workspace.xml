@@ -5,14 +5,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[init] implements create atividade v3">
+    <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[feat] flow de atividade completo.">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AtividadeApi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Service/HelperService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/adm/atividades/pdfView.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/adm/pdf/qrcode.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/guest/list-tasks-id.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/taskui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/taskui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Service/AgendaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/AgendaService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/guest.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +68,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="desenve" />
+        <entry key="$PROJECT_DIR$" value="Sprite" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -200,6 +208,8 @@
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/moneyphp/money" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hiB8r9GePTynTnptluMO4VXKXH" />
@@ -211,7 +221,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor/jetstream/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/guest" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -219,18 +229,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Public" />
       <recent name="$PROJECT_DIR$/resources/views/adm/resource" />
       <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/atividade" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Adm" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/vendor/jetstream/components" />
-      <recent name="$PROJECT_DIR$/resources/views/livewire/resource" />
-      <recent name="$PROJECT_DIR$/app/Http/Livewire/Resource" />
-      <recent name="$PROJECT_DIR$/resources/views/adm/resources" />
-      <recent name="$PROJECT_DIR$/resources/views/adm" />
+      <recent name="$PROJECT_DIR$/resources/views/guest" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
+      <recent name="$PROJECT_DIR$/app/Http/Service" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Api" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/pdf" />
     </key>
   </component>
   <component name="RunManager">
@@ -265,7 +275,11 @@
       <workItem from="1603576331920" duration="27920000" />
       <workItem from="1603744890688" duration="10719000" />
       <workItem from="1603810122485" duration="762000" />
-      <workItem from="1603824003684" duration="16163000" />
+      <workItem from="1603824003684" duration="16466000" />
+      <workItem from="1603892684042" duration="4427000" />
+      <workItem from="1603971298429" duration="4674000" />
+      <workItem from="1603987762247" duration="8178000" />
+      <workItem from="1604003116832" duration="19441000" />
     </task>
     <task id="LOCAL-00001" summary="[init] add">
       <created>1600533191891</created>
@@ -309,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603748178139</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[feat] flow de atividade completo.">
+      <created>1603891469145</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603891469145</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +383,8 @@
     <MESSAGE value="[init] implements create atividade" />
     <MESSAGE value="[init] implements create atividade v2" />
     <MESSAGE value="[init] implements create atividade v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="[init] implements create atividade v3" />
+    <MESSAGE value="[feat] flow de atividade completo." />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] flow de atividade completo." />
   </component>
   <component name="WindowStateProjectService">
     <state x="418" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603559048251">
@@ -463,10 +485,10 @@
       <screen x="0" y="0" width="1920" height="728" />
     </state>
     <state x="689" y="202" width="540" height="524" key="StructurePopup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600531993078" />
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1603748230844">
+    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1603891479297">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603748230844" />
+    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603891479297" />
     <state x="821" y="203" width="267" height="519" key="VcsDiffUtil.ChangesDialog" timestamp="1603308960789">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
@@ -479,6 +501,10 @@
       <screen x="0" y="0" width="1920" height="728" />
     </state>
     <state x="100" y="99" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600562122170" />
+    <state x="1920" y="0" width="770" height="728" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603987013996">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="1920" y="0" width="770" height="728" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603987013996" />
     <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601906621831">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
@@ -488,10 +514,10 @@
     </state>
     <state x="503" y="193" width="904" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603839881136" />
     <state x="2278" y="169" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603799084440" />
-    <state x="666" y="151" width="1031" height="577" key="find.popup" timestamp="1603890058813">
+    <state x="666" y="151" width="1031" height="577" key="find.popup" timestamp="1604160616985">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
-    <state x="666" y="151" width="1031" height="577" key="find.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603890058813" />
+    <state x="666" y="151" width="1031" height="577" key="find.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604160616985" />
     <state x="764" y="451" width="381" height="170" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1600533142287">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
@@ -531,13 +557,8 @@
         </line-breakpoint>
         <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/Http/Service/AgendaService.php</url>
-          <line>44</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Service/AgendaService.php</url>
           <line>69</line>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

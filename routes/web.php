@@ -33,16 +33,30 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades',
 [\App\Http\Controllers\Adm\Atividades::class,'index']
 )->name('atividades.index');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/create',
 [\App\Http\Controllers\Adm\Atividades::class,'create']
 )->name('atividades.create');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/generate-qr-code/{id}',
+[\App\Http\Controllers\Adm\Atividades::class,'generateQrCode']
+)->name('atividades.generate-qr-code');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/pdf-general-code/{id}',
+[\App\Http\Controllers\Adm\Atividades::class,'generatePdfQrCode']
+)->name('atividades.generate-pdf-qrcode');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/show/{atividade}',
 [\App\Http\Controllers\Adm\Atividades::class,'show']
+)->name('resources.show');
 
-)->name('resources.show');Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources',
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources',
 [\App\Http\Controllers\Adm\Resources::class,'index']
 );
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources/create',
     [\App\Http\Controllers\Adm\Resources::class,'create']
 )->name('resources.create');
+
+Route::get('/guest/list-tasks-id/{id}',
+    [\App\Http\Controllers\Guest\Index::class,'listTasksId']
+);
