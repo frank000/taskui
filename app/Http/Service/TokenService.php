@@ -24,12 +24,16 @@ class TokenService
      */
     public static function tokenizer($token)
     {
-        $base = base64_decode($token);
+        if(!is_null($token))
+        {
+            $base = base64_decode($token);
 
-        if(is_null(json_decode($base)))
-            throw new \Exception("Parametro incorreto.");
+            if(is_null(json_decode($base)))
+                throw new \Exception("Parametro incorreto.");
 
-        return json_decode($base);
+            return json_decode($base);
+        }
+
     }
 
     public static function isValid($data)
@@ -44,6 +48,15 @@ class TokenService
             return false;
 
         return true;
+    }
+    public static function equals($val1 , $val2)
+    {
+        if(!empty($val1) && !empty($val2))
+        {
+            return self::tokenizer($val1)->id == self::tokenizer($val2)->id;
+        }
+        return false;
+
     }
 
 }

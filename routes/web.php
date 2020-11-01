@@ -53,9 +53,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/show/{ativ
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources',
 [\App\Http\Controllers\Adm\Resources::class,'index']
 );
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources/create',
     [\App\Http\Controllers\Adm\Resources::class,'create']
 )->name('resources.create');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/schedules',
+    [\App\Http\Controllers\Adm\Schedules::class,'index']
+)->name('schedules.index');
+
 
 Route::get('/guest/list-tasks-id/{id}',
     [\App\Http\Controllers\Guest\Index::class,'listTasksId']

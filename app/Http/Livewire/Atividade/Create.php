@@ -193,6 +193,7 @@ class Create extends Component
     {
         if($page == 1 )
         {
+            $this->validatePage();
             $this->pageScreen = 2;
         }else if($page == 2)
         {

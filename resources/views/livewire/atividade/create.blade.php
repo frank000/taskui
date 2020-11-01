@@ -4,7 +4,8 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('A atividade é o serviço que você irá oferecer a seu cliente. Obs.: E interessante que ') }}
+        {{ __('A atividade é o serviço que você irá oferecer a seu cliente. Obs.: E interessante que entender o responsável pela execução
+dessa atividade, será o recurso que você criou anteriormente.') }}
     </x-slot>
 
     <x-slot name="form" >
