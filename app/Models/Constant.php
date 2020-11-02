@@ -23,6 +23,9 @@ class Constant
     const COMPLETE_DAYS = ['dom'=> 'Domingo','seg' => 'Segunda' , 'ter' => 'Terça', 'qua' => 'Quarta', 'qui' => 'Quinta',
                   'sex' => 'Sexta', 'sab' => 'Sábado'];
 
+    const COMPLETE_DAYS_INDEX = [ 0 => 'Domingo', 1 => 'Segunda' , 2  => 'Terça',  3 => 'Quarta', 4  => 'Quinta',
+                  5  => 'Sexta',  6 => 'Sábado'];
+
 
 
 }

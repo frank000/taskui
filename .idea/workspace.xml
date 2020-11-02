@@ -5,15 +5,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[feat] flow de query, e implementação do agendamento por celular">
-      <change afterPath="$PROJECT_DIR$/resources/views/adm/schedules/index.blade.php" afterDir="false" />
+    <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[feat] Criação do item de agenda">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Service/TokenService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/TokenService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Service/HelperService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/HelperService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Constant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Constant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +270,7 @@
       <workItem from="1603987762247" duration="8178000" />
       <workItem from="1604003116832" duration="19937000" />
       <workItem from="1604234409468" duration="6347000" />
-      <workItem from="1604242096443" duration="10261000" />
+      <workItem from="1604242096443" duration="15274000" />
     </task>
     <task id="LOCAL-00001" summary="[init] add">
       <created>1600533191891</created>
@@ -332,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604162011184</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="[feat] Criação do item de agenda">
+      <created>1604254262108</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1604254262108</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,17 +390,18 @@
     <MESSAGE value="[init] implements create atividade v3" />
     <MESSAGE value="[feat] flow de atividade completo." />
     <MESSAGE value="[feat] flow de query, e implementação do agendamento por celular" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] flow de query, e implementação do agendamento por celular" />
+    <MESSAGE value="[feat] Criação do item de agenda" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] Criação do item de agenda" />
   </component>
   <component name="WindowStateProjectService">
     <state x="418" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603559048251">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
     <state x="418" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603559048251" />
-    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603729447803">
+    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604280903914">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
-    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603729447803" />
+    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604280903914" />
     <state x="2413" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1601941053778" />
     <state width="601" height="462" key="DebuggerActiveHint" timestamp="1603840017905">
       <screen x="0" y="0" width="1920" height="728" />
@@ -488,10 +492,10 @@
       <screen x="0" y="0" width="1920" height="728" />
     </state>
     <state x="689" y="202" width="540" height="524" key="StructurePopup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600531993078" />
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1604162030049">
+    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1604254269176">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604162030049" />
+    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604254269176" />
     <state x="821" y="203" width="267" height="519" key="VcsDiffUtil.ChangesDialog" timestamp="1603308960789">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
@@ -518,10 +522,10 @@
     </state>
     <state x="503" y="193" width="904" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603839881136" />
     <state x="2278" y="169" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603799084440" />
-    <state x="666" y="151" width="1031" height="577" key="find.popup" timestamp="1604254041908">
+    <state x="666" y="151" width="1031" height="577" key="find.popup" timestamp="1604260865953">
       <screen x="0" y="0" width="1920" height="728" />
     </state>
-    <state x="666" y="151" width="1031" height="577" key="find.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604254041908" />
+    <state x="666" y="151" width="1031" height="577" key="find.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1604260865953" />
     <state x="764" y="451" width="381" height="170" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1600533142287">
       <screen x="0" y="0" width="1920" height="728" />
     </state>

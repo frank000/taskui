@@ -2,6 +2,7 @@
 
 namespace App\Http\Service;
 
+use App\Models\Constant;
 use File;
 
 class HelperService
@@ -39,6 +40,35 @@ class HelperService
         }
 
         return $result;
+    }
+
+    /**
+     * Create the string to de days field in the grid
+     * @param $arrDays
+     * @return string
+     *
+     */
+    protected static function handleDays($arrDays)
+    {
+        $resultString = "";
+        if(count($arrDays))
+        {
+            if(!empty($arrDays['all']) && $arrDays['all'] || !empty($arrDays['uteis']) && $arrDays['uteis'])
+            {
+                $resultString .= " - " . $arrDays['hor_inicio_man'] . " ás " . $arrDays['hor_fim_man'] . " e ";
+                $resultString .= $arrDays['hor_inicio_tar'] . " ás " . $arrDays['hor_fim_tar'];
+
+                $resultString .= (!empty($arrDays['all']) && $arrDays['all'] )? ' - Todos os dias' : ' - Dias uteis' ;
+            }
+            else
+            {
+                foreach ($arrDays as $key =>$day)
+                {
+                    $resultString .= " | " . Constant::COMPLETE_DAYS[$key];
+                }
+            }
+        }
+        return $resultString;
     }
 
 }
