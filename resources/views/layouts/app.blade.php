@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-        <div class="min-h-screen bg-gray-200">
+        <div class="min-h-screen bg-gray-200" style="background-image: url('https://image.freepik.com/vetores-gratis/empresario-voando-no-conceito-de-negocio-de-foguete_107791-76.jpg?1');background-size: 80%">
             @livewire('navigation-dropdown')
 
 
@@ -115,7 +115,7 @@
 
 
             <!-- Page Content -->
-            <main>
+            <main >
                 {{ $slot }}
             </main>
         </div>

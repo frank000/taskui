@@ -6,10 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[feat] Criação do item de agenda">
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/loginantigo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/config.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/welcomeantigo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Service/HelperService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/HelperService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Constant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Constant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/navigation-dropdown.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/navigation-dropdown.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,26 +215,26 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/adm/schedules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/adm/schedules" />
-      <recent name="$PROJECT_DIR$/resources/views/guest" />
-      <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
-      <recent name="$PROJECT_DIR$/app/Http/Service" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Api" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Adm" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Public" />
       <recent name="$PROJECT_DIR$/resources/views/adm/resource" />
       <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/atividade" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$/resources/views/auth" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/schedules" />
+      <recent name="$PROJECT_DIR$/resources/views/guest" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
     </key>
   </component>
   <component name="RunManager">
@@ -271,6 +276,9 @@
       <workItem from="1604003116832" duration="19937000" />
       <workItem from="1604234409468" duration="6347000" />
       <workItem from="1604242096443" duration="15274000" />
+      <workItem from="1604349830432" duration="1883000" />
+      <workItem from="1604661253845" duration="1190000" />
+      <workItem from="1604665177868" duration="7922000" />
     </task>
     <task id="LOCAL-00001" summary="[init] add">
       <created>1600533191891</created>
