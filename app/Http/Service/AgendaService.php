@@ -167,5 +167,10 @@ class AgendaService
         return base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($link));
     }
 
+    public function schedule($agenda, $client)
+    {
+
+    }
+
 
 }

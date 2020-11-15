@@ -70,3 +70,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/adm/schedules',
 Route::get('/guest/list-tasks-id/{id}',
     [\App\Http\Controllers\Guest\Index::class,'listTasksId']
 );
+
+Route::get('/guest/result',
+    function (){
+        return view('guest.result');
+    }
+);

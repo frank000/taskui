@@ -67,7 +67,7 @@ class Create extends Component
 
                 foreach ($this->resourcesArr as $resource)
                 {
-                    $this->organizaDias($atividade->id, $resource['id']);
+                    $this->organizaDias($atividade->id, $resource['id'], $resource);
                     $agenda->gerarAgenda($atividade,$resource['id']);
                 }
                 $this->emit('hideLoadingEvent');
@@ -96,15 +96,14 @@ class Create extends Component
             unset($this->dias[key($value)]);
     }
 
-    public function organizaDias($id, $resourceId)
+    public function organizaDias($id, $resourceId, $resource)
     {
 
         $days=[];
-        foreach ($this->resourcesArr as $rec)
-        {
-            $days = $rec['days'];
-        }
-
+//        foreach ($this->resourcesArr as $rec)
+//        {
+        $days = $resource['days'];
+      //  }
         //salva 7 dias semana
         if(isset($days['all']))
         {
