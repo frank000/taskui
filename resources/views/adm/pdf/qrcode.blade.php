@@ -54,8 +54,14 @@
         <div id="code">
             <img id="img" src="data:image/png;base64, {!! $data['qrcode'] !!}">
             <p style="text-align: center">Aponte a camera do seu smartphone para o QrCode acima, e você será direcionado para a página de
-                agendamento para o serviço:
+                Agendamento Remoto do serviço:
+                <br><strong>{{$data['act_name']}}</strong>
             </p>
+            <p style="text-align: center">
+                <br><strong>DICA:</strong> Você pode salvar o link nos favoritos do seu smartphone e
+                agendar sempre que desejar.
+            </p>
+
 
         </div>
 

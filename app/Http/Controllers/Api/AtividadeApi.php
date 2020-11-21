@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Service\AgendaService;
 use App\Http\Service\HelperService;
 use App\Http\Service\TokenService;
+use App\Models\Atividade;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,13 @@ class AtividadeApi extends Controller
             $base64Code = $agService->getQrCode(url('/guest/list-tasks-id/' . $idAtividade));
             $logo = HelperService::imagenToBase64('img/logo.png');
 
+            $activity = Atividade::find(TokenService::tokenizer($idAtividade)->id);
             $company = "Clinica teste";
 
-            $data = array( 'qrcode'=>$base64Code, 'company' => $company, 'logo' => $logo);
+            $data = array( 'qrcode'=>$base64Code,
+                            'company' => $company,
+                            'logo' => $logo,
+                            'act_name' => $activity->str_desc);
 
             $pdf = PDF::setOptions([ 'isRemoteEnabled' => true])->loadView('adm.pdf.qrcode', compact('data'));
             $file = $pdf->output();
