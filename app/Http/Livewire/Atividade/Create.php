@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Atividade;
 
 use App\Http\Livewire\Componente\CheckHour;
 use App\Http\Service\AgendaService;
+use App\Http\Service\TokenService;
 use App\Models\Agenda;
 use App\Models\Atividade;
 use App\Models\Constant;
@@ -14,11 +15,12 @@ use App\Models\SemanaPeriodo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-use phpDocumentor\Reflection\Utils;
+use Illuminate\Http\Request;
 
 class Create extends Component
 {
     public $atividade = [];
+    public $editable;
     public $i = 0;
     public $isSaved = false;
     public $custonOpen = false;
@@ -39,6 +41,11 @@ class Create extends Component
     protected $listeners = ['addCheck' => 'setValues',
                             'deleteResourceEvent'=>'deleteResource'];
 
+    public function mount(Request $request)
+    {
+        $this->populateEdit($request);
+
+    }
     public function render()
     {
         $this->resources = Resource::all();
@@ -51,38 +58,28 @@ class Create extends Component
             'str_atividade' => ['required', 'string', 'max:255'],
             'str_desc' => ['required', 'string', 'max:255'],
             'dat_inicio' => ['required'],
-            'dat_fim' => ['required', 'string', 'max:255'],
+            'dat_fim' => ['required','date','after:dat_inicio'],
         ])->validate();
 
         $this->atividade['flg_situacao']  = 'A';
         $this->atividade['user_id']  = Auth::user()->id;
 
-        if($atividade = Atividade::create($this->atividade))
+        if(isset($this->editable) && !empty($this->editable))
         {
-
-//           if($this->organizaDias($atividade->id))
-//           {
-                $agenda = new AgendaService(new Agenda());
-            try{
-
-                foreach ($this->resourcesArr as $resource)
-                {
-                    $this->organizaDias($atividade->id, $resource['id'], $resource);
-                    $agenda->gerarAgenda($atividade,$resource['id']);
-                }
-                $this->emit('hideLoadingEvent');
-                $this->isSaved = true;
-                $this->msg = "Registro salvo com sucesso.";
-                $this->atividade = [];
-            }catch (\Exception $e){
-                $this->isSaved = true;
-                $this->msg = "Houve um problema ao criar a atividade.";
-                $this->msg .= $e->getMessage();
-                $this->atividade = [];
-            }
-
-//           }
+            $atividade = Atividade::find(TokenService::tokenizer($this->editable)->id);
+            $atividade->str_atividade = $this->atividade['str_atividade'];
+            $atividade->str_desc = $this->atividade['str_desc'];
+            $atividade->temp_periodo = $this->atividade['temp_periodo'];
+            $atividade->dat_inicio = $this->atividade['dat_inicio'];
+            $atividade->dat_fim = $this->atividade['dat_fim'];
+            $atividade->save();
         }
+        else
+        {
+            $atividade = Atividade::create($this->atividade);
+        }
+
+        $this->createActivity($atividade);
     }
 
     /**
@@ -100,67 +97,67 @@ class Create extends Component
     {
 
         $days=[];
-//        foreach ($this->resourcesArr as $rec)
-//        {
-        $days = $resource['days'];
-      //  }
-        //salva 7 dias semana
-        if(isset($days['all']))
+        if(isset($resource['days']))
         {
-            for ($dia = 0 ; $dia < 7; $dia++ )
+            $days = $resource['days'];
+            //salva 7 dias semana
+            if(isset($days['all']))
             {
-                $arrDia = [];
-                $arrDia['atividade_id'] = $id;
-                $arrDia['resource_id'] = $resourceId;
-                $arrDia['num_dia'] = $dia;
-                $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
-                $arrDia['hor_fim_man'] = $days['hor_fim_man'];
-                $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
-                $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
-                $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
-                SemanaPeriodo::create($arrDia);
+                for ($dia = 0 ; $dia < 7; $dia++ )
+                {
+                    $arrDia = [];
+                    $arrDia['atividade_id'] = $id;
+                    $arrDia['resource_id'] = $resourceId;
+                    $arrDia['num_dia'] = $dia;
+                    $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
+                    $arrDia['hor_fim_man'] = $days['hor_fim_man'];
+                    $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
+                    $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
+                    $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
+                    SemanaPeriodo::create($arrDia);
+                }
+                return true;
             }
-            return true;
-        }
-        elseif (isset($days['uteis']))
-        {
-            for ($dia = 1 ; $dia < 6; $dia++ )
+            elseif (isset($days['uteis']))
             {
-                $arrDia = [];
-                $arrDia['atividade_id'] = $id;
-                $arrDia['resource_id'] = $resourceId;
-                $arrDia['num_dia'] = $dia;
-                $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
-                $arrDia['hor_fim_man'] = $days['hor_fim_man'];
-                $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
-                $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
-                $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
-;
-                SemanaPeriodo::create($arrDia);
+                for ($dia = 1 ; $dia < 6; $dia++ )
+                {
+                    $arrDia = [];
+                    $arrDia['atividade_id'] = $id;
+                    $arrDia['resource_id'] = $resourceId;
+                    $arrDia['num_dia'] = $dia;
+                    $arrDia['hor_inicio_man'] = $days['hor_inicio_man'];
+                    $arrDia['hor_fim_man'] = $days['hor_fim_man'];
+                    $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
+                    $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
+                    $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
+                    ;
+                    SemanaPeriodo::create($arrDia);
+                }
+                return true;
             }
-            return true;
-        }
-        else
-        {
-            $arrDias = [];
-            foreach ($days as $dia)
+            else
             {
-                $arrDia = [];
-                $arrDia['atividade_id'] = $id;
-                $arrDia['resource_id'] = $resourceId;
-                $arrDia['num_dia'] = Constant::DIAS[key($dia)];
-                $arrDia['hor_inicio_man'] = $dia['hor_inicio_man_p'];
-                $arrDia['hor_fim_man'] = $dia['hor_fim_man_p'];
-                $arrDia['hor_inicio_tar'] = $dia['hor_inicio_tar_p'];
-                $arrDia['hor_fim_tar'] = $dia['hor_fim_tar_p'];
-                $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
-                array_push($arrDias,$arrDia);
+                $arrDias = [];
+                foreach ($days as $dia)
+                {
+                    $arrDia = [];
+                    $arrDia['atividade_id'] = $id;
+                    $arrDia['resource_id'] = $resourceId;
+                    $arrDia['num_dia'] = Constant::DIAS[key($dia)];
+                    $arrDia['hor_inicio_man'] = $dia['hor_inicio_man_p'];
+                    $arrDia['hor_fim_man'] = $dia['hor_fim_man_p'];
+                    $arrDia['hor_inicio_tar'] = $dia['hor_inicio_tar_p'];
+                    $arrDia['hor_fim_tar'] = $dia['hor_fim_tar_p'];
+                    $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
+                    array_push($arrDias,$arrDia);
+                }
+                foreach ($arrDias as $data)
+                {
+                    SemanaPeriodo::create($data);
+                }
+                return true;
             }
-            foreach ($arrDias as $data)
-            {
-                SemanaPeriodo::create($data);
-            }
-            return true;
         }
     }
 
@@ -364,5 +361,62 @@ class Create extends Component
     {
         $this->isSaved = !$this->isSaved;
         return redirect()->to('/adm/atividades');
+    }
+
+    /**
+     * @param Request $request
+     * @throws \Exception
+     */
+    protected function populateEdit(Request $request): void
+    {
+        if (isset($request->idactivity) && !empty($request->idactivity)) {
+            $this->editable = $request->idactivity;
+            $this->atividade = Atividade::find(TokenService::tokenizer($request->idactivity)->id)->toArray();
+            //mount array of resources
+            $id = (TokenService::tokenizer($request->idactivity)->id);
+            $obj = Atividade::find($id);
+            $arrs = $obj->semanaPeriodos->map(function ($item) {
+                return array_merge($item->toArray(), $item->resource->toArray());
+            });
+
+            $resourcesArr = [];
+            foreach ($arrs as $key => $row) {
+                $result = [];
+                $result['dias'] = " - " . Constant::COMPLETE_DAYS_INDEX[$row['num_dia']] . " de " . $row['hor_inicio_man'] . " às " . $row['hor_fim_man'] .
+                    " - " . $row['hor_inicio_tar'] . " às " . $row['hor_fim_tar'];
+                $result['resource'] = $row['str_name'];
+                $result['id'] = $row['id'];
+                $resourcesArr[$key] = $result;
+            }
+            $this->resourcesArr = $resourcesArr;
+        }
+    }
+
+    protected function createActivity($atividade): void
+    {
+        if ($atividade) {
+
+//           if($this->organizaDias($atividade->id))
+//           {
+            $agenda = new AgendaService(new Agenda());
+            try {
+
+                foreach ($this->resourcesArr as $resource) {
+                    $this->organizaDias($atividade->id, $resource['id'], $resource);
+                    $agenda->gerarAgenda($atividade, $resource['id']);
+                }
+                $this->emit('hideLoadingEvent');
+                $this->isSaved = true;
+                $this->msg = "Registro salvo com sucesso.";
+                $this->atividade = [];
+            } catch (\Exception $e) {
+                $this->isSaved = true;
+                $this->msg = "Houve um problema ao criar a atividade.";
+                $this->msg .= $e->getMessage();
+                $this->atividade = [];
+            }
+
+//           }
+        }
     }
 }

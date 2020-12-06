@@ -18,12 +18,12 @@ function mascaraTel(el){
 }
 function massage(data){
     $(document).ready(function(){
-        $('#messageFlash').empty()
+        $('#helperMessage').empty()
         var success = "<div class=\"col-start-2 col-span-4 bg-blue-100 border-t border-b focus:border-blue-500 text-blue-700 px-4 py-3 w-3/4\" role=\"alert\">\n" +
             "                    <p class=\"font-bold\">" + data.title + "</p>\n" +
             "                    <p class=\"text-sm\">" + data.msg + "</p>\n" +
             "                </div>";
-      $('#messageFlash').slideDown(300).append(success).delay( 3000 ).slideUp(300);
+      $('#helperMessage').slideDown(300).append(success).delay( 3000 ).slideUp(300);
     });
 
 
@@ -76,4 +76,9 @@ function grid(table,showName)
     } )
         .columns.adjust()
         .responsive.recalc();
+}
+
+function closeMesssage()
+{
+    $('#message').hide();
 }

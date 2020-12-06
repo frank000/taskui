@@ -88,7 +88,20 @@
 
 <!--Container-->
     <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
-
+        @if (session()->has('message'))
+                  <div id="message" class="alert alert-success bg-gray-100 h-20 rounded-lg">
+                <div class="flex justify-end bg-gray-200 p-2 rounded-t-lg">
+                    <svg class="w-6 h-6 align cursor-pointer" fill="none" stroke="currentColor" onclick="closeMesssage()"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path></svg>
+                </div>
+                <div class="p-2">
+                    <p class="text-red-500">{{ session('message') }}</p>
+                </div>
+            </div>
+        @endif
         <!--Title-->
         <h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
             Atividades
@@ -112,16 +125,37 @@
                 <tbody>
                 @foreach($atividades as $ati)
                     <tr>
-                        <td><a href="/adm/atividades/show/{{$ati->id}}" class="hover:text-indigo-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></a></td>
+                        <td class="inline-flex">
+                            <span title="{{__('Resumo')}}">
+                                <a href="/adm/atividades/show/{{$ati->id}}"
+                                   class="hover:text-indigo-400"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+
+                                        </path></svg>
+                                </a>
+                            </span>
+                            <span title="{{__('Excluir')}}">
+                                <a
+{{--                                    href="/adm/atividades/delete/{{$ati->id}}"--}}
+                                   wire:click="setDelete(true,'{{$ati->id}}')"
+                                   class="text-red-700 hover:text-red-400 cursor-pointer"><svg class="w-6 h-6" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5
+                                               4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+
+                                        </path></svg>
+                                </a>
+                            </span>
+                        </td>
                         <td>{{$ati->str_atividade}}</td>
                         <td>{{$ati->dat_inicio}}</td>
                         <td>{{$ati->dat_fim}}</td>
                         <td>{{$ati->temp_periodo}}</td>
                     </tr>
                 @endforeach
-
-
-
                 </tbody>
 
             </table>
@@ -136,7 +170,35 @@
 
 
 
+    <x-jet-dialog-modal wire:model="displaying">
+        <x-slot name="title">
+            <span class="inline-flex">
+                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0
+                          013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138
+                          3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0
+                          00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                    </path></svg>
+                {{ __('Confirmação') }}
+            </span>
+        </x-slot>
+        <x-slot name="content">
+            <div>
+                {{ __('Você tem certeza que deseja excluir a atividade?') }}
+            </div>
+        </x-slot>
 
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="delete" >
+                {{ __('Deletar') }}
+            </x-jet-secondary-button>
+            <x-jet-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
+                {{ __('Fechar') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -147,6 +209,10 @@
     <script>
         $(document).ready(function() {
             var table = grid('#example', "atividades");
+
+            Livewire.on('reloadGridEvent', id => {
+                $('#example').dataTable()._fnInitialise()
+            })
         } );
 
     </script>

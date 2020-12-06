@@ -163,7 +163,7 @@ dessa atividade, será o recurso que você criou anteriormente.') }}
                 <div class="col-span-6 sm:col-span-4">
                     <img src="{{asset('/img/task3.png')}}" width="110%"/>
                 </div>
-                @livewire('componente.detail-activity',['atividade' => $atividade, 'resources' => $resourcesArr])
+                @livewire('componente.detail-activity',['atividade' => $atividade, 'resources' => $resourcesArr, 'isCreate' => true])
             </div>
 
     @endif
@@ -188,7 +188,7 @@ dessa atividade, será o recurso que você criou anteriormente.') }}
             </a>
         @endif
         @if($pageScreen == 3)
-            <x-jet-button onclick="carregando(true)">
+            <x-jet-button id="btn_concluir" href="#">
                 {{ __('Concluir') }}
             </x-jet-button>
         @endif
@@ -197,6 +197,9 @@ dessa atividade, será o recurso que você criou anteriormente.') }}
 </x-jet-form-section>
 <script>
     $(document).ready(function(){
+        $(document).on('click','#btn_concluir',function (){
+            carregando(true)
+        })
         Livewire.on('selectResourceEvent', function (){
             //alert('Favor relacionar ao menos um recurso para a execução da atividade.')
              massageAlert({title:'Alerta',msg:'Favor relacionar ao menos um recurso para a execução da atividade.'})

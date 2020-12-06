@@ -1,5 +1,6 @@
 <?php
 
+use App\Notifications\UserNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades',
 [\App\Http\Controllers\Adm\Atividades::class,'index']
 )->name('atividades.index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/create',
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/clients',
+[\App\Http\Controllers\Adm\Clients::class,'index']
+)->name('clients.index');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/atividades/create/{idactivity?}',
 [\App\Http\Controllers\Adm\Atividades::class,'create']
 )->name('atividades.create');
 
@@ -76,3 +81,24 @@ Route::get('/guest/result',
         return view('guest.result');
     }
 );
+
+Route::get('send-mail', function () {
+
+//    $details = [
+//        'title' => 'Mail from ItSolutionStuff.com',
+//        'body' => 'This is for testing email using smtp'
+//    ];
+//
+//    \Mail::to('frandf000@gmail.com')->send(new \App\Mail\EmailService($details));
+    $details = [
+        'to' => 'frandf000@gmail.com',
+        'title' => 'Notificação de Agendamento - Agendrix | taskUI',
+        'body' => 'This is for testing email using smtp'
+    ];
+//                event(new SendNotification($details));
+
+    \Illuminate\Support\Facades\Notification::route('mail', $details['to'])
+        ->notify(new UserNotification($details));
+
+    dd("Email is Sent.");
+});

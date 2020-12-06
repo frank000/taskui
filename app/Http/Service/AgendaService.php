@@ -162,6 +162,16 @@ class AgendaService
         return $this->agendaModel->save();
     }
 
+    /**
+     * Open a schedule blocked
+     * return boolean
+     */
+    public function openAgenda()
+    {
+        $this->agendaModel->flg_aberto = Constant::FLG_AGENDA_ABERTA;
+        return $this->agendaModel->save();
+    }
+
     public function getQrCode($link)
     {
         return base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($link));

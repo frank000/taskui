@@ -111,7 +111,7 @@
             </header>
 
                 @livewire('componente.message')
-            <div id="helperMessage"></div>
+            <div id="helperMessage" class="grid grid-cols-5 gap-2"></div>
 
 
             <!-- Page Content -->

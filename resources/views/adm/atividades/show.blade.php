@@ -14,7 +14,7 @@
                             Voltar
                         </a>
                     </div>
-                    @livewire('componente.detail-activity',['atividade' => $atividade, 'resources' => $resourcesArr])
+                    @livewire('componente.detail-activity',['atividade' => $atividade, 'resources' => $resourcesArr, 'ids' => $ids])
 
                 </div>
             </div>
