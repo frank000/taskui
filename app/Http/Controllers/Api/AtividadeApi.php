@@ -17,6 +17,7 @@ class AtividadeApi extends Controller
         try {
             $agService = new AgendaService(new \App\Models\Agenda());
             $base64Code = $agService->getQrCode(url('/guest/list-tasks-id/' . $idAtividade));
+
             $logo = HelperService::imagenToBase64('img/logo.png');
 
             $activity = Atividade::find(TokenService::tokenizer($idAtividade)->id);
@@ -26,7 +27,6 @@ class AtividadeApi extends Controller
                             'company' => $company,
                             'logo' => $logo,
                             'act_name' => $activity->str_desc);
-
             $pdf = PDF::setOptions([ 'isRemoteEnabled' => true])->loadView('adm.pdf.qrcode', compact('data'));
             $file = $pdf->output();
             return base64_encode($file);

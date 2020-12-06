@@ -11,8 +11,14 @@ class Resources extends Controller
     {
         return view('adm.resources.index');
     }
+
     public function create(Request $request)
     {
         return view('adm.resources.create');
+    }
+
+    public function edit(Request $request)
+    {
+        return view('adm.resources.edit');
     }
 }

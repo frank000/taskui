@@ -76,7 +76,9 @@ dessa atividade, será o recurso que você criou anteriormente.') }}
                         <option value=""></option>
                         <option value="s">asda</option>
                         @foreach($resources as $rec)
-                            <option value="{{$rec->id}}">{{$rec->str_name}}</option>
+                            <option value="{{\App\Http\Service\TokenService::tokenizer($rec->id)->id}}">
+                                {{$rec->str_name}}
+                            </option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

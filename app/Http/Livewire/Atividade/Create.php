@@ -54,32 +54,36 @@ class Create extends Component
 
     public function save()
     {
-        Validator::make($this->atividade, [
-            'str_atividade' => ['required', 'string', 'max:255'],
-            'str_desc' => ['required', 'string', 'max:255'],
-            'dat_inicio' => ['required'],
-            'dat_fim' => ['required','date','after:dat_inicio'],
-        ])->validate();
+        try {
+            Validator::make($this->atividade, [
+                'str_atividade' => ['required', 'string', 'max:255'],
+                'str_desc' => ['required', 'string', 'max:255'],
+                'dat_inicio' => ['required'],
+                'dat_fim' => ['required','date','after:dat_inicio'],
+            ])->validate();
 
-        $this->atividade['flg_situacao']  = 'A';
-        $this->atividade['user_id']  = Auth::user()->id;
+            $this->atividade['flg_situacao']  = 'A';
+            $this->atividade['user_id']  = Auth::user()->id;
 
-        if(isset($this->editable) && !empty($this->editable))
-        {
-            $atividade = Atividade::find(TokenService::tokenizer($this->editable)->id);
-            $atividade->str_atividade = $this->atividade['str_atividade'];
-            $atividade->str_desc = $this->atividade['str_desc'];
-            $atividade->temp_periodo = $this->atividade['temp_periodo'];
-            $atividade->dat_inicio = $this->atividade['dat_inicio'];
-            $atividade->dat_fim = $this->atividade['dat_fim'];
-            $atividade->save();
+            if(isset($this->editable) && !empty($this->editable))
+            {
+                $atividade = Atividade::find(TokenService::tokenizer($this->editable)->id);
+                $atividade->str_atividade = $this->atividade['str_atividade'];
+                $atividade->str_desc = $this->atividade['str_desc'];
+                $atividade->temp_periodo = $this->atividade['temp_periodo'];
+                $atividade->dat_inicio = $this->atividade['dat_inicio'];
+                $atividade->dat_fim = $this->atividade['dat_fim'];
+                $atividade->save();
+            }
+            else
+            {
+                $atividade = Atividade::create($this->atividade);
+            }
+
+            $this->createActivity($atividade);
+        }catch (\Exception $e){
+            throw new \Exception($e->getMessage());
         }
-        else
-        {
-            $atividade = Atividade::create($this->atividade);
-        }
-
-        $this->createActivity($atividade);
     }
 
     /**
@@ -227,7 +231,6 @@ class Create extends Component
 
     public function addResource()
     {
-
         Validator::make(['type_resource'=>$this->resourceObj], [
             'type_resource' => ['required']
         ])->validate();
@@ -241,7 +244,7 @@ class Create extends Component
         }
 
 //
-        $resourceObject =Resource::find($this->resourceObj);
+        $resourceObject = Resource::find($this->resourceObj);
         $this->resourcesArr[ $resourceObject->str_name] = array('dias' =>  $this->handleDays($this->dias),
             'resource' =>  $resourceObject->str_name,'id' =>  $resourceObject->id,
             'days' => $this->dias);
@@ -347,8 +350,9 @@ class Create extends Component
         $this->emit('addedResourceEvent',$this->resourcesArr);
     }
 
-    public function updatedResourceObj()
+    public function updatedResourceObj($val)
     {
+        $this->resourceObj = $val;
         $this->dias = [];
         $this->emitTo("CheckHour","clearDiasEvent");
     }
@@ -385,7 +389,7 @@ class Create extends Component
                 $result['dias'] = " - " . Constant::COMPLETE_DAYS_INDEX[$row['num_dia']] . " de " . $row['hor_inicio_man'] . " às " . $row['hor_fim_man'] .
                     " - " . $row['hor_inicio_tar'] . " às " . $row['hor_fim_tar'];
                 $result['resource'] = $row['str_name'];
-                $result['id'] = $row['id'];
+                $result['id'] = TokenService::tokenizer($row['id'])->id;
                 $resourcesArr[$key] = $result;
             }
             $this->resourcesArr = $resourcesArr;
@@ -400,8 +404,8 @@ class Create extends Component
 //           {
             $agenda = new AgendaService(new Agenda());
             try {
-
-                foreach ($this->resourcesArr as $resource) {
+                foreach ($this->resourcesArr as $resource)
+                {
                     $this->organizaDias($atividade->id, $resource['id'], $resource);
                     $agenda->gerarAgenda($atividade, $resource['id']);
                 }

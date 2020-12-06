@@ -11,14 +11,9 @@ class Lista extends Component
 {
     public $resources;
 
-
-
-
-
     public function render()
     {
         $this->resources =  Resource::all()->where("type_resource_id","!=",null);
-
         return view('livewire.resource.lista');
     }
 }

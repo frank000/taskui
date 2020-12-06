@@ -63,9 +63,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources',
 [\App\Http\Controllers\Adm\Resources::class,'index']
 );
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources/create',
+Route::middleware(['auth:sanctum', 'verified'])->get('/adm/resources/create/{id?}',
     [\App\Http\Controllers\Adm\Resources::class,'create']
 )->name('resources.create');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/adm/schedules',
     [\App\Http\Controllers\Adm\Schedules::class,'index']

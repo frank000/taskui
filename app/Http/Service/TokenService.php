@@ -38,6 +38,9 @@ class TokenService
 
     public static function isValid($data)
     {
+        if(!is_array( $data))
+            return false;
+
         if(!array_key_exists('type', $data))
             return false;
 

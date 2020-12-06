@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Http\Service\TokenService;
+use App\Models\Traits\CryptId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Atividade extends Model
 {
     use HasFactory;
+    use CryptId;
+
     protected $fillable = ['str_atividade','str_desc', 'temp_periodo', 'str_img',
         'dat_inicio', 'dat_fim', 'flg_situacao',  'user_id'];
 

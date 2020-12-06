@@ -1,7 +1,11 @@
 
 <x-jet-form-section submit="save" >
     <x-slot name="title">
-        {{ __('Criar recurso') }}
+        @if($isEdit)
+            {{ __('Editar recurso') }}
+        @else
+            {{ __('Criar recurso') }}
+        @endif
     </x-slot>
 
     <x-slot name="description">
@@ -47,7 +51,11 @@
         </x-jet-action-message>
 
         <x-jet-button>
-            {{ __('Criar') }}
+            @if($isEdit)
+                {{ __('Editar') }}
+            @else
+                {{ __('Criar') }}
+            @endif
         </x-jet-button>
 
     </x-slot>

@@ -29,6 +29,7 @@ class Atividades extends Controller
         if(isset($request->id))
         {
             $api = new AtividadeApi();
+
             $base = $api->pdfQrcode($request, $request->id);
             $result = base64_decode($base);
             $pdf = new Dompdf();
