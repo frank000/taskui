@@ -21,15 +21,16 @@ class Agenda extends Controller
 
         $arrExplode = explode('_',$atividade);
         $atividade = TokenService::tokenizer($arrExplode[0])->id;
+        $resource = TokenService::tokenizer($arrExplode[1])->id;
         $start = $request->get('start');
         $end = $request->get('end');
 
         if(!empty($start) && !empty($end))
         {
             // possivle troca de logica
-           $agendamentos = \App\Models\Agenda::whereBetween('dat_marcacao',[$start,$end])
-                                                ->where(['atividade_id'=>$atividade,
-                                                         'resource_id'=>$arrExplode[1]])->get();
+           $agendamentos = \App\Models\Agenda::whereBetween('dat_marcacao', [$start, $end])
+                                                ->where(['atividade_id' => $atividade,
+                                                         'resource_id' => $resource])->get();
 
            $arrResult = [];
            foreach ($agendamentos as $row)

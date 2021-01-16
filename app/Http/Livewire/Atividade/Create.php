@@ -99,8 +99,8 @@ class Create extends Component
 
     public function organizaDias($id, $resourceId, $resource)
     {
-
-        $days=[];
+        $result = [];
+        $days = [];
         if(isset($resource['days']))
         {
             $days = $resource['days'];
@@ -118,9 +118,9 @@ class Create extends Component
                     $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
                     $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
                     $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
-                    SemanaPeriodo::create($arrDia);
+                    $result[] = SemanaPeriodo::create($arrDia);
                 }
-                return true;
+                return $result;
             }
             elseif (isset($days['uteis']))
             {
@@ -135,10 +135,10 @@ class Create extends Component
                     $arrDia['hor_inicio_tar'] = $days['hor_inicio_tar'];
                     $arrDia['hor_fim_tar'] = $days['hor_fim_tar'];
                     $arrDia['flg_situacao'] = Constant::FLG_ATIVO;
-                    ;
-                    SemanaPeriodo::create($arrDia);
+
+                    $result[] = SemanaPeriodo::create($arrDia);
                 }
-                return true;
+                return $result;
             }
             else
             {
@@ -158,9 +158,9 @@ class Create extends Component
                 }
                 foreach ($arrDias as $data)
                 {
-                    SemanaPeriodo::create($data);
+                    $result[] = SemanaPeriodo::create($data);
                 }
-                return true;
+                return $result;
             }
         }
     }
@@ -400,14 +400,12 @@ class Create extends Component
     {
         if ($atividade) {
 
-//           if($this->organizaDias($atividade->id))
-//           {
             $agenda = new AgendaService(new Agenda());
             try {
                 foreach ($this->resourcesArr as $resource)
                 {
-                    $this->organizaDias($atividade->id, $resource['id'], $resource);
-                    $agenda->gerarAgenda($atividade, $resource['id']);
+                    $result = $this->organizaDias($atividade->id, $resource['id'], $resource);
+                    $agenda->gerarAgenda($atividade, $result, $resource['id']);
                 }
                 $this->emit('hideLoadingEvent');
                 $this->isSaved = true;

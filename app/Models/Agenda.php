@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\CryptId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class Agenda extends Model
 {
     use HasFactory;
+    use CryptId;
     protected $fillable = ['atividade_id','resource_id', 'client_id', 'flg_situacao', 'flg_aberto', 'dat_marcacao', 'color'];
 
     public function client()
@@ -30,5 +32,10 @@ class Agenda extends Model
             ->where('client_id',null)
             ->groupBy('agenda_tim')
             ->get();
+    }
+
+    public function setResourceIdAttribute($value)
+    {
+        $this->attributes['resource_id'] = $this->set($value);
     }
 }
