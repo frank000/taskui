@@ -6,26 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a7fe338-ca9e-4d31-8e5e-b456611b9f97" name="Default Changelist" comment="[feat] layout e textos qr code">
-      <change afterPath="$PROJECT_DIR$/resources/views/email/confirmation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/taskui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/taskui.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index11.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Resource/Lista.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Resource/Lista.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Service/AgendaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/AgendaService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/funcs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/funcs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adm/atividades/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/guest/list-tasks-id.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guest/list-tasks-id.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/atividade/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/atividade/lista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/atividade/lista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Service/TokenService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Service/TokenService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Traits/CryptId.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Traits/CryptId.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/aindex.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/estudos 01.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/atividade/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/atividade/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/config/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/config/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,22 +226,23 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/public/estudos 01.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/resources/views/livewire/resource" />
+      <recent name="$PROJECT_DIR$/app/Http/Livewire/Resource" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/resources" />
+      <recent name="$PROJECT_DIR$/resources/views/adm/clients" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Livewire/Config" />
+      <recent name="$PROJECT_DIR$/resources/views/livewire/config" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Adm" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Public" />
       <recent name="$PROJECT_DIR$/resources/views/adm/resource" />
-      <recent name="$PROJECT_DIR$/resources/views/adm/atividades" />
-      <recent name="$PROJECT_DIR$/resources/views/livewire/atividade" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/resources/views/adm/clients" />
-      <recent name="$PROJECT_DIR$/resources/views/guest" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/resources/views/auth" />
     </key>
   </component>
   <component name="RunManager">
@@ -310,7 +298,17 @@
       <workItem from="1606593250664" duration="12688000" />
       <workItem from="1606751204547" duration="322000" />
       <workItem from="1606752393599" duration="889000" />
-      <workItem from="1607176000489" duration="7914000" />
+      <workItem from="1607176000489" duration="8974000" />
+      <workItem from="1607263993936" duration="18183000" />
+      <workItem from="1607730949515" duration="5553000" />
+      <workItem from="1607987547150" duration="2177000" />
+      <workItem from="1609078977905" duration="3126000" />
+      <workItem from="1609168912655" duration="1996000" />
+      <workItem from="1609266396571" duration="683000" />
+      <workItem from="1609270961986" duration="557000" />
+      <workItem from="1609337578984" duration="664000" />
+      <workItem from="1609420503205" duration="72000" />
+      <workItem from="1610828530628" duration="1841000" />
     </task>
     <task id="LOCAL-00001" summary="[init] add">
       <created>1600533191891</created>
@@ -396,7 +394,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605973588751</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="[feat] layout e textos qr code">
+      <created>1607258595363</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1607258595363</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[feat] layout e textos qr code">
+      <created>1607270122831</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1607270122831</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,163 +469,6 @@
     <MESSAGE value="[feat] layout e textos qr code" />
     <option name="LAST_COMMIT_MESSAGE" value="[feat] layout e textos qr code" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="418" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603559048251">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="418" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603559048251" />
-    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606653625180">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="693" y="244" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1606653625180" />
-    <state x="2413" y="223" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1605974394060" />
-    <state x="767" y="283" width="375" height="439" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1606135871752">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="767" y="283" width="375" height="439" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1606135871752" />
-    <state x="767" y="156" width="375" height="566" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1605451078228">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="767" y="156" width="375" height="566" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1605451078228" />
-    <state width="601" height="462" key="DebuggerActiveHint" timestamp="1603840017905">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="601" height="462" key="DebuggerActiveHint/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840017905" />
-    <state width="428" height="488" key="DebuggerActiveHint/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800196689" />
-    <state x="100" y="99" width="1720" height="880" key="DiffContextDialog" timestamp="1603310176794">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="100" y="99" width="1720" height="880" key="DiffContextDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603310176794" />
-    <state x="743" y="244" width="424" height="478" key="FileChooserDialogImpl" timestamp="1606751287219">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="743" y="244" width="424" height="478" key="FileChooserDialogImpl/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1606751287219" />
-    <state width="1878" height="271" key="GridCell.Tab.0.bottom" timestamp="1603840085666">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.0.bottom/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085666" />
-    <state width="1324" height="175" key="GridCell.Tab.0.bottom/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.0.center" timestamp="1603840085666">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.0.center/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085666" />
-    <state width="1324" height="175" key="GridCell.Tab.0.center/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.0.left" timestamp="1603840085666">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.0.left/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085666" />
-    <state width="1324" height="175" key="GridCell.Tab.0.left/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.0.right" timestamp="1603840085666">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.0.right/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085666" />
-    <state width="1324" height="175" key="GridCell.Tab.0.right/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.1.bottom" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.1.bottom/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.1.bottom/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507473" />
-    <state width="1878" height="271" key="GridCell.Tab.1.center" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.1.center/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.1.center/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.1.left" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.1.left/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.1.left/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.1.right" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.1.right/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.1.right/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507472" />
-    <state width="1878" height="271" key="GridCell.Tab.2.bottom" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.2.bottom/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.2.bottom/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507473" />
-    <state width="1878" height="271" key="GridCell.Tab.2.center" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.2.center/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.2.center/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507473" />
-    <state width="1878" height="271" key="GridCell.Tab.2.left" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.2.left/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.2.left/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507473" />
-    <state width="1878" height="271" key="GridCell.Tab.2.right" timestamp="1603840085526">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state width="1878" height="271" key="GridCell.Tab.2.right/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603840085526" />
-    <state width="1324" height="175" key="GridCell.Tab.2.right/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603800507473" />
-    <state x="2390" y="92" width="415" height="536" key="NewPhpClassDialog" timestamp="1601760491186">
-      <screen x="1920" y="0" width="1366" height="768" />
-    </state>
-    <state x="2390" y="92" width="415" height="536" key="NewPhpClassDialog/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1601760491186" />
-    <state x="2421" y="289" width="354" height="147" key="NewPhpFileDialog" timestamp="1606609126226">
-      <screen x="1920" y="0" width="1366" height="768" />
-    </state>
-    <state x="2421" y="289" width="354" height="147" key="NewPhpFileDialog/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1606609126226" />
-    <state x="928" y="0" key="SettingsEditor" timestamp="1601762523190">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="928" y="0" key="SettingsEditor/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1601762523190" />
-    <state x="689" y="202" width="540" height="524" key="StructurePopup" timestamp="1600531993078">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="689" y="202" width="540" height="524" key="StructurePopup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600531993078" />
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1605453439041">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="555" y="200" width="800" height="522" key="Vcs.Push.Dialog.v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1605453439041" />
-    <state x="821" y="203" width="267" height="519" key="VcsDiffUtil.ChangesDialog" timestamp="1603308960789">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="821" y="203" width="267" height="519" key="VcsDiffUtil.ChangesDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603308960789" />
-    <state x="2020" y="99" width="1166" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1601817334569">
-      <screen x="1920" y="0" width="1366" height="768" />
-    </state>
-    <state x="2020" y="99" width="1166" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1601817334569" />
-    <state x="100" y="99" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600562122170">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="100" y="99" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600562122170" />
-    <state x="0" y="0" width="770" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605029865722">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="0" y="0" width="770" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1605029865722" />
-    <state x="1920" y="0" width="770" height="728" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603987013996" />
-    <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601906621831">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="768" y="456" width="373" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1601906621831" />
-    <state x="503" y="193" width="904" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1603839881136">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="503" y="193" width="904" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1603839881136" />
-    <state x="2278" y="169" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603799084440" />
-    <state x="666" y="151" width="1031" height="577" key="find.popup" timestamp="1607212819425">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="155" y="0" width="925" height="614" key="find.popup/0.0.3286.728@0.0.3286.728" timestamp="1605023934727" />
-    <state x="666" y="151" width="1031" height="577" key="find.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1607212819425" />
-    <state x="2394" y="119" width="734" height="609" key="find.popup/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1605977389102" />
-    <state x="764" y="451" width="381" height="170" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1600533142287">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="764" y="451" width="381" height="170" key="git4idea.remote.GitConfigureRemotesDialog/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1600533142287" />
-    <state x="624" y="248" key="run.anything.popup" timestamp="1606652381878">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="624" y="248" key="run.anything.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1606652381878" />
-    <state x="2364" y="262" key="run.anything.popup/1920.0.1366.768/0.0.1920.728@1920.0.1366.768" timestamp="1603798483286" />
-    <state x="623" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606594250490">
-      <screen x="0" y="0" width="1920" height="728" />
-    </state>
-    <state x="623" y="49" width="672" height="678" key="search.everywhere.popup/1920.0.1366.768/0.0.1920.728@0.0.1920.728" timestamp="1606594250490" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -624,7 +479,7 @@
         </line-breakpoint>
         <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/Http/Livewire/Atividade/Create.php</url>
-          <line>98</line>
+          <line>102</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint type="php">

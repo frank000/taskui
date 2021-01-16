@@ -44,8 +44,7 @@
                     <div id="view-1" class="hidden">
 
                         <hr class="my-2 border-gray-500">
-                        Abaixo estão diponíveis as informações da sua empresa(nome, endereço, telefone e etc) que serão exibidas nos
-                        diversos pontos do sistema. Mantenha atualizado.
+                        @livewire('config.form-company')
                         <hr class="my-2 border-gray-500">
 
                     </div>

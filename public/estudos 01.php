@@ -199,3 +199,80 @@ declare(strict_types=1);
 //define('_CONSTANT',0);
 //define('_EMPTY','as');
 //echo _EMPTY;
+
+//var_dump(get_loaded_extensions());
+//SIMPLEXML
+
+//$xmlStr = <<<XML
+//<?xml version='1.0' standalone='yes' ?>
+//<movies>
+//    <movie>
+//        <title>PHP: Behind the Parser</title>
+//        <characters>
+//           <character>
+//                <name>Ms. Coder</name>
+//                <actor>Onlivia Actora</actor>
+//           </character>
+//           <character>
+//                <name>Mr. Coder</name>
+//                <actor>El Act&#211;r</actor>
+//           </character>
+//      </characters>
+//       <plot>
+//       So, this language. It's like, a programming language. Or is it a
+//       scripting language? All is revealed in this thrilling horror spoof
+//       of a documentary.
+//      </plot>
+//       <great-lines>
+//       <line>PHP solves all my web problems</line>
+//      </great-lines>
+//        <rating type="thumbs">7</rating>
+//        <rating type="stars">5</rating>
+//    </movie>
+//</movies>
+//XML;
+//
+//libxml_use_internal_errors(true);//enabling all error
+//
+//
+//$xml = new SimpleXMLElement($xmlStr); // alias simplexml_load_string
+//echo  $xml->movie->{'great-lines'}->line.PHP_EOL;
+//echo  $xml->movie->rating[0]['type'];//thumbs
+//var_dump( $xml->movie->title);
+//var_dump( $xml->xpath('//character'));
+////$xml->movie[0]->characters->character[0]->name = 'Franklim';
+//
+////$el1 = new SimpleXMLElement($xmlstr);
+////$el2 = new SimpleXMLElement($xmlstr);
+////var_dump($el1 == $el2); // false since PHP 5.2.0
+//
+////echo $xml->asXML();
+//
+//
+//$cha = $xml->movie[0]->characters->addChild('character');
+//$cha->addChild('name','Franklim Paulino');
+//$cha->addChild('actor','El hacker');
+//var_dump($xml->asXML());
+//
+//
+//$dom = new domDocument;
+//$dom->loadXML('<books><book><title>BLAHHHH</title></book></books>');
+//
+//if (!$dom) {
+//    echo 'Error while parsing the document';
+//    exit;
+//}
+//$s = simplexml_import_dom($dom);
+////simplexml_load_file (import bya file )
+//echo $s->book[0]->title[0];
+/*
+// handling error
+//$sxe = simplexml_load_string("<?xml version='1.0'><broken><xml></broken>");
+//if (!$sxe) {
+//    echo "Failed loading XML\n";
+//    foreach(libxml_get_errors() as $error) {
+//        echo "\t", $error->message;
+//    }
+//}
+#*/
+

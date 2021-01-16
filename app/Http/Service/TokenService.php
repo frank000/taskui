@@ -22,7 +22,7 @@ class TokenService
     /**
      *
      */
-    public static function tokenizer($token)
+    public static function tokenizer($token, $isArray = false)
     {
         if(!is_null($token))
         {
@@ -31,7 +31,7 @@ class TokenService
             if(is_null(json_decode($base)))
                 throw new \Exception("Parametro incorreto.");
 
-            return json_decode($base);
+            return json_decode($base,$isArray);
         }
 
     }

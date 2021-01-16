@@ -19,7 +19,7 @@ trait CryptId
 
     public function set($value)
     {
-        if (TokenService::isValid($value))
+        if (TokenService::isValid(TokenService::tokenizer($value, true)))
             return TokenService::tokenizer($value)->id;
 
         return $value;
